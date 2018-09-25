@@ -14,7 +14,6 @@ WORKDIR /ng-app
 RUN npm install
 
 RUN npm install -g @angular/cli@latest
-#--no-cache git
 
 WORKDIR /ng-app
 
@@ -24,14 +23,12 @@ RUN npm rebuild node-sass --force
 
 ## Build the angular app in production mode and store the artifacts in dist folder
 RUN $(npm bin)/ng build --env prod
-#RUN ng build --env prod
 
 ### STAGE 2: Setup ###
 
 FROM nginx:1.13.6-alpine
 
 COPY --from=builder /ng-app/dist /usr/share/nginx/html
-
 #COPY dist /usr/share/nginx/html/
 COPY start_front.sh /tmp
 EXPOSE 80
