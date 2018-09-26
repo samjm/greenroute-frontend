@@ -14,7 +14,7 @@ WORKDIR /ng-app
 
 #RUN npm install
 
-#RUN npm install -g @angular/cli@latest
+#RUN npm install -g @angular/cli@1.1.0
 
 #WORKDIR /ng-app
 
