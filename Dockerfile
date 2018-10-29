@@ -1,7 +1,8 @@
 ### STAGE 1: Build ###
 
 # We label our stage as ‘builder’
-FROM node:8.11.2 as builder
+#FROM node:8.11.2 as builder
+FROM node:6.14.4 as builder
 
 #Cleanup
 RUN npm cache clean --force
@@ -16,7 +17,7 @@ COPY package.json ./
 #RUN npm i --no-cache git && mkdir /ng-app && mv ./node_modules ./ng-app
 RUN npm i && mkdir /ng-app && cp -R ./node_modules ./ng-app
 
-RUN npm i -g @angular/cli:1.0.0-rc.0
+RUN npm i -g @angular/cli:1.0.0
 #RUN mkdir /ng-app
 WORKDIR /ng-app
 
