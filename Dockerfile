@@ -12,7 +12,7 @@ RUN npm i -g @angular/cli
 #RUN mkdir /ng-app
 WORKDIR /ng-app
 
-#RUN npm install
+RUN npm install
 
 #RUN npm install -g @angular/cli@1.1.0
 
