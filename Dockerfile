@@ -8,7 +8,7 @@ COPY package.json ./
 
 ## Storing node modules on a separate layer will prevent unnecessary npm installs at each build
 RUN npm i --no-cache git && mkdir /ng-app && mv ./node_modules ./ng-app
-RUN npm i -g @angular/cli:1.0.0-rc.0
+RUN npm i -g @angular/cli
 #RUN mkdir /ng-app
 WORKDIR /ng-app
 
