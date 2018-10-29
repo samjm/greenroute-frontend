@@ -3,16 +3,24 @@
 # We label our stage as ‘builder’
 FROM node:8.11.2 as builder
 
+#Cleanup
+RUN npm cache clean --force
+#RUN rmdir node_modules /s /q
+RUN npm install -g typescript@2.0.10
+
+
 #COPY package.json package-lock.json ./
 COPY package.json ./
 
 ## Storing node modules on a separate layer will prevent unnecessary npm installs at each build
-RUN npm i --no-cache git && mkdir /ng-app && mv ./node_modules ./ng-app
-RUN npm i -g @angular/cli
+#RUN npm i --no-cache git && mkdir /ng-app && mv ./node_modules ./ng-app
+RUN npm i && mkdir /ng-app && cp -R ./node_modules ./ng-app
+
+RUN npm i -g @angular/cli:1.0.0-rc.0
 #RUN mkdir /ng-app
 WORKDIR /ng-app
 
-RUN npm install
+#RUN npm install
 
 #RUN npm install -g @angular/cli@1.1.0
 
@@ -23,8 +31,8 @@ COPY . .
 #RUN npm rebuild node-sass --force
 
 ## Build the angular app in production mode and store the artifacts in dist folder
-#RUN $(npm bin)/ng build --env prod
-RUN ng build -env prod
+RUN $(npm bin)/ng build --env prod
+#RUN ng build -env prod
 
 ### STAGE 2: Setup ###
 
