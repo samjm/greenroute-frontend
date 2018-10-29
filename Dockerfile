@@ -32,7 +32,7 @@ WORKDIR /ng-app
 COPY . .
 
 
-RUN npm i -g @angular/cli:1.0.0
+RUN npm i -g @angular/cli
 RUN npm install
 
 #RUN npm rebuild node-sass --force
