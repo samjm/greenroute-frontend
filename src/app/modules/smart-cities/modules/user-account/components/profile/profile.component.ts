@@ -42,8 +42,8 @@ export class ProfileComponent implements OnInit {
     this.complexForm = this.fb.group({
       'name': this.buildNameFormControl(),
       'familyName': this.buildNameFormControl(),
-      'birthDate': this.buildBirthDateControl(),
-      'gender': this.buildGenderFormControl()
+      'birthDate': this.buildBirthDateControl()
+      // 'gender': this.buildGenderFormControl()
     });
   }
 
@@ -55,9 +55,9 @@ export class ProfileComponent implements OnInit {
     return new FormControl(value, [CustomValidators.dateISO, CustomValidators.maxDate(this.currentDate)]);
   }
 
-  private buildGenderFormControl(value?: any): FormControl {
-    return new FormControl(value, []);
-  }
+  // private buildGenderFormControl(value?: any): FormControl {
+  //   return new FormControl(value, []);
+  // }
 
   ngOnInit() {
     try {
@@ -69,8 +69,8 @@ export class ProfileComponent implements OnInit {
             this.complexForm = this.fb.group({
               'name': this.buildNameFormControl(userProfile.name),
               'familyName': this.buildNameFormControl(userProfile.familyName),
-              'birthDate': this.buildBirthDateControl(userProfile.birthDate),
-              'gender': this.buildGenderFormControl(userProfile.gender)
+              'birthDate': this.buildBirthDateControl(userProfile.birthDate)
+              // 'gender': this.buildGenderFormControl(userProfile.gender)
             });
 
             this.fixIndexAddress();
@@ -102,11 +102,11 @@ export class ProfileComponent implements OnInit {
       this.userProfile.birthDate = null;
     }
 
-    if (form.gender) {
-      this.userProfile.gender = form.gender;
-    } else {
+    // if (form.gender) {
+    //   this.userProfile.gender = form.gender;
+    // } else {
       this.userProfile.gender = null;
-    }
+    // }
 
     this.userProfileService.updateUserProfile(this.userProfile).subscribe(
       (res) => {

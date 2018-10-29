@@ -62,10 +62,10 @@ export class UserVehicleDetailComponent implements OnInit {
     private prepareForm() {
         this.vehicleForm = this.fb.group({ //// Make Model driven form
             'name': this.buildRequiredFormControl(this.vehicle.name),
-            'brandName': this.buildSimpleFormControl(this.vehicle.brandName),
-            'modelName': this.buildSimpleFormControl(this.vehicle.modelName),
+            // 'brandName': this.buildSimpleFormControl(this.vehicle.brandName),
+            // 'modelName': this.buildSimpleFormControl(this.vehicle.modelName),
             'description': this.buildSimpleFormControl(this.vehicle.description),
-            'vehiclPlateIdentifier': this.buildSimpleFormControl(this.vehicle.vehiclPlateIdentifier),
+            // 'vehiclPlateIdentifier': this.buildSimpleFormControl(this.vehicle.vehiclPlateIdentifier),
             'vehicleType': this.buildRequiredFormControl(this.vehicleTypeId),
             'fuelType': this.buildRequiredFormControl(this.vehicle.fuelType),
             'fuelConsumption': this.buildSimpleFormControl(this.vehicle.fuelConsumption),
@@ -126,7 +126,7 @@ export class UserVehicleDetailComponent implements OnInit {
             this.hasEngine = false;
         }else{
             this.hasEngine = true;
-        } 
+        }
 
     }
 
@@ -222,14 +222,14 @@ export class UserVehicleDetailComponent implements OnInit {
                 vehicleName = this.vehicle.name.toUpperCase().trim();
                 this.vehicle.vehicleType = this.findVehicleType(form.vehicleType);
 
-                if (this.vehicle.vehicleType.includeBrandModel) {
-                    if (this.vehicle.brandName !== '' && this.vehicle.modelName !== '' && this.vehicle.brandName !== undefined
-                        && this.vehicle.modelName !== undefined) {
-                            this.valido = true;
-                        }
-                } else {
+                // if (this.vehicle.vehicleType.includeBrandModel) {
+                    // if (this.vehicle.brandName !== '' && this.vehicle.modelName !== '' && this.vehicle.brandName !== undefined
+                    //     && this.vehicle.modelName !== undefined) {
+                            // this.valido = true;
+                        // }
+                // } else {
                     this.valido = true;
-                }
+                // }
 
                 if (this.index === '') {
                     for (let i = 0; i < this.vehicles.length; i++) {
