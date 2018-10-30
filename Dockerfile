@@ -5,17 +5,18 @@
 FROM node:6.14.4 as builder
 
 #Cleanup
-RUN npm cache clean --force
+#RUN npm cache clean --force
 #RUN rmdir node_modules /s /q
 
-RUN npm install -g typescript@2.0.10
+#RUN npm install -g typescript@2.0.10
 #COPY package.json package-lock.json ./
-COPY package.json ./
+COPY package.json package-lock.json ./
 
 
 ## Storing node modules on a separate layer will prevent unnecessary npm installs at each build
 #RUN npm i --no-cache git && mkdir /ng-app && mv ./node_modules ./ng-app
-RUN npm i && mkdir /ng-app && cp -R ./node_modules ./ng-app
+#RUN npm i && mkdir /ng-app && cp -R ./node_modules ./ng-app
+RUN npm i && mkdir /ng-app && mv -R ./node_modules ./ng-app
 
 #RUN npm i -g @angular/cli:1.0.0
 
@@ -32,8 +33,8 @@ WORKDIR /ng-app
 COPY . .
 
 
-RUN npm i -g @angular/cli
-RUN npm install
+#RUN npm i -g @angular/cli
+#RUN npm install
 
 #RUN npm rebuild node-sass --force
 
