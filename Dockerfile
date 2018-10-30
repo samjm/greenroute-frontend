@@ -16,7 +16,7 @@ COPY package.json package-lock.json ./
 ## Storing node modules on a separate layer will prevent unnecessary npm installs at each build
 #RUN npm i --no-cache git && mkdir /ng-app && mv ./node_modules ./ng-app
 #RUN npm i && mkdir /ng-app && cp -R ./node_modules ./ng-app
-RUN npm i && mkdir /ng-app && mv -R ./node_modules ./ng-app
+RUN npm i && mkdir /ng-app && cp -R ./node_modules ./ng-app
 
 #RUN npm i -g @angular/cli:1.0.0
 
