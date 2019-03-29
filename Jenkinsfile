@@ -3,6 +3,7 @@ pipeline {
         dockerfile {
           filename 'Dockerfile'
         }
+    }
     stages {
         stage('Build') {
             steps {
