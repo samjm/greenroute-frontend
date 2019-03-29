@@ -1,21 +1,23 @@
 pipeline {
-  agent none
-  stages {
-    stage('Build') {
-      agent {
+    agent {
         dockerfile {
           filename 'Dockerfile'
         }
-
-      }
-      steps {
-        sh 'docker build -t greenroute-frontend:v1 .'
-      }
+    stages {
+        stage('Build') {
+            steps {
+              sh 'docker build -t greenroute-frontend:v1 .'
+            }
+        }
+        stage('Test') {
+            steps {
+                echo 'Testing..'
+            }
+        }
+        stage('Deploy') {
+            steps {
+              sh 'docker run -p 80:80 greenroute-frontend:v1'
+            }
+        }
     }
-    stage('Deploy') {
-      steps {
-        sh 'docker run -p 8081:8080 greenroute-frontend:v1'
-      }
-    }
-  }
 }
