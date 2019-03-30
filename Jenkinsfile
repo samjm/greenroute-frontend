@@ -7,7 +7,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-              sh 'docker build -t greenroute-frontend:v1 .'
+              sh 'node --version'
             }
         }
         stage('Test') {
